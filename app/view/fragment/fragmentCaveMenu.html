@@ -9,7 +9,7 @@
     <ul class="nav navbar-nav">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-           aria-haspopup="true" aria-expanded="false">VACCIN <span class="caret"></span></a>
+           aria-haspopup="true" aria-expanded="false">Gestion des vaccins <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="router.php?action=vaccinReadAll">Liste des vaccins</a></li>
           <li><a href="router.php?action=vaccinCreate">Insertion d'un vaccin</a></li>                       
@@ -18,7 +18,7 @@
       </li>   
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-           aria-haspopup="true" aria-expanded="false">CENTRE <span class="caret"></span></a>
+           aria-haspopup="true" aria-expanded="false">Gestion des centres <span class="caret"></span></a>
         <ul class="dropdown-menu">            
           <li><a href="router.php?action=centreReadAll">Liste des centres</a></li>
           <li><a href="router.php?action=centreCreate">Insertion d'un centre</a></li>
@@ -26,10 +26,19 @@
       </li>
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
-           aria-haspopup="true" aria-expanded="false">PATIENT <span class="caret"></span></a>
+           aria-haspopup="true" aria-expanded="false">Gestion des patients <span class="caret"></span></a>
         <ul class="dropdown-menu">            
           <li><a href="router.php?action=patientReadAll">Liste des patient</a></li>
           <li><a href="router.php?action=patientCreate">Insertion d'un patient</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" 
+           aria-haspopup="true" aria-expanded="false">Gestions des stocks <span class="caret"></span></a>
+        <ul class="dropdown-menu">            
+          <li><a href="router.php?action=stockReadAll">Liste des centres avec le nombre de dosses par vaccin</a></li>
+          <li><a href="router.php?action=stocktReadDoses">Nombre global de doses par centre</a></li>
+          <li><a href="router.php?action=StockUpdate">Ajout de vaccins pour un centre</a></li>
         </ul>
       </li>   
     </ul>

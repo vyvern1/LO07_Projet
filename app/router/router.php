@@ -4,6 +4,7 @@
 require ('../controller/ControllerVaccin.php');
 require ('../controller/ControllerCentre.php');
 require ('../controller/ControllerPatient.php');
+require ('../controller/ControllerStock.php');
 require ('../controller/ControllerAccueil.php');
 
 
@@ -47,6 +48,13 @@ switch ($action) {
  case "patientCreated" :
   ControllerPatient::$action($args);
   break;
+
+  case "stockReadAll" :
+  case "stocktReadDoses" :
+  case "StockUpdate" :
+  case "StockUpdated" :
+    ControllerStock::$action($args);
+    break;
 
  // Tache par défaut
  default:
