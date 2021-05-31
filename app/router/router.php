@@ -5,6 +5,7 @@ require ('../controller/ControllerVaccin.php');
 require ('../controller/ControllerCentre.php');
 require ('../controller/ControllerPatient.php');
 require ('../controller/ControllerStock.php');
+require ('../controller/ControllerInnovation.php');
 require ('../controller/ControllerAccueil.php');
 
 
@@ -54,6 +55,12 @@ switch ($action) {
   case "StockUpdate" :
   case "StockUpdated" :
     ControllerStock::$action($args);
+    break;
+
+  case "innovation1" :
+  case "innovation2" :
+  case "innovation3" :
+    ControllerInnovation::$action($args);
     break;
 
  // Tache par défaut
