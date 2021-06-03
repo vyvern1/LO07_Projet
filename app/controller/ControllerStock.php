@@ -1,6 +1,9 @@
 <!-- ----- debut Controllerstock -->
 <?php
 require_once '../model/ModelStock.php';
+require_once '../model/ModelVaccin.php';
+require_once '../model/ModelCentre.php';
+
 
 class ControllerStock {
  

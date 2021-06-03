@@ -83,13 +83,13 @@ class ModelStock {
         'vaccin_id' => $vaccin_id
     ]);
     if($statement->rowCount() > 0) {
-      $tuple = $statement->fetchAll();
+      $tuple = $statement->fetch();
       $quantite_initiale = $tuple['0'];
-      $quantite = $quantite + $quantite_initiale;
+      $quantite += $quantite_initiale;
 
       $query = "update stock set quantite=:quantite where centre_id=:centre_id and vaccin_id=:vaccin_id";
       $statement = $database->prepare($query);
-      $statement->execute([
+      $results_stock = $statement->execute([
           'quantite' => $quantite,
           'centre_id' => $centre_id,
           'vaccin_id' => $vaccin_id
@@ -98,14 +98,12 @@ class ModelStock {
     else {
       $query = "insert into stock value (:centre_id, :vaccin_id, :quantite)";
       $statement = $database->prepare($query);
-      $statement->execute([
+      $results_stock = $statement->execute([
         'quantite' => $quantite,
         'centre_id' => $centre_id,
         'vaccin_id' => $vaccin_id
       ]);
     }
-
-    $results_stock = $statement->fetchAll();
     return $results_stock;
   } catch (PDOException $e) {
     printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());

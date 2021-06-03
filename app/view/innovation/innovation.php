@@ -1,5 +1,5 @@
 
-<!-- ----- début innovation1 -->
+<!-- ----- début innovation -->
 <?php
 
 require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
@@ -12,15 +12,22 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
     include $root . '/app/view/fragment/fragmentCaveJumbotron.html';
 
     $i = 0;
-    foreach ($results_innovation as $innovation) {
+    foreach ($results_innovation as $indice => $innovation) {
       $i = $i + 1;
-      $label[$i] = $innovation[0];
-      $quantite[$i] = $innovation[1];
+      $label[$i] = $indice;
+      $quantite[$i] = $innovation;
     }
+
+    //Aide débeugage
+    echo("<pre>");
+    print_r($results_innovation);
+    echo("</pre>");
+
     ?>
-    <h3>Nombre de vaccins par centre</h3>
+
+    <h3>Etat des patients</h3>
     <div>
-      <canvas id="myChart"></canvas>
+      <canvas id="Chart"></canvas>
     </div>
 
     <script>
@@ -48,14 +55,14 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
       };
 
       var myChart = new Chart(
-        document.getElementById('myChart'),
+        document.getElementById('Chart'),
         config
       );
     </script>
   </div>
   <?php include $root . '/app/view/fragment/fragmentCaveFooter.html'; ?>
 
-  <!-- ----- fin innovation1 -->
+  <!-- ----- fin innovation -->
   
   
   

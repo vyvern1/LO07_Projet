@@ -9,9 +9,6 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     <?php
     include $root . '/app/view/fragment/fragmentCaveMenu.html';
     include $root . '/app/view/fragment/fragmentCaveJumbotron.html';
-    echo("<pre>");
-    print_r($results_stock);
-    echo("</pre>");
     ?>
     <!-- ===================================================== -->
     <?php
@@ -31,7 +28,4 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     
     include $root . '/app/view/fragment/fragmentCaveFooter.html';
     ?>
-    <!-- ----- fin viewupdated -->    
-
-    
-    
+    <!-- ----- fin viewupdated -->
