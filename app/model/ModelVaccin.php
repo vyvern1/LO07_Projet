@@ -68,14 +68,20 @@ class ModelVaccin {
    $id++;
 
    // ajout d'un nouveau tuple;
-   $query = "insert into vaccin value (:id, :label, :doses)";
-   $statement = $database->prepare($query);
-   $statement->execute([
-     'id' => $id,
-     'label' => $label,
-     'doses' => $doses
-   ]);
-   return 1;
+   if ($doses >= 1) {
+      $query = "insert into vaccin value (:id, :label, :doses)";
+      $statement = $database->prepare($query);
+      $statement->execute([
+        'id' => $id,
+        'label' => $label,
+        'doses' => $doses
+      ]);
+      return 1;
+   }
+   else {
+      return null;
+   }
+  
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
    return null;
@@ -87,13 +93,18 @@ class ModelVaccin {
     $database = Model::getInstance();
  
     // update d'un nouveau tuple;
-    $query = "update vaccin set doses = :doses where id = :id";
-    $statement = $database->prepare($query);
-    $statement->execute([
-      'id' => $id,
-      'doses' => $doses
-    ]);
-    return 2;
+    if ($doses >= 1) {
+      $query = "update vaccin set doses = :doses where id = :id";
+      $statement = $database->prepare($query);
+      $statement->execute([
+        'id' => $id,
+        'doses' => $doses
+      ]);
+      return 2;
+    }
+    else {
+      return null;
+    }
   } catch (PDOException $e) {
     printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
     return null;

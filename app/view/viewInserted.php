@@ -18,6 +18,9 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     elseif ($results == 2) {
       echo ("<h3>$objet mise a jour</h3>");
     }
+    elseif ($results == 3) {
+      echo ("<h3>Le patient est déja vacciné</h3>");
+    }
     if ($results) {
      echo("<ul>");
      foreach($_GET as $key => $value) {

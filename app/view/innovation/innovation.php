@@ -11,18 +11,28 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
     include $root . '/app/view/fragment/fragmentCaveMenu.html';
     include $root . '/app/view/fragment/fragmentCaveJumbotron.html';
 
-    $i = 0;
-    foreach ($results_innovation as $indice => $innovation) {
-      $i = $i + 1;
-      $label[$i] = $indice;
-      $quantite[$i] = $innovation;
-    }
-
     //Aide débeugage
     echo("<pre>");
-    print_r($results_innovation);
+    print_r($results);
     echo("</pre>");
 
+    $i = 0;
+    foreach ($results[0] as $key => $value) {
+      if (!is_int($key)) {
+        $label[$i] = $key;
+        $i++;
+      }
+    }
+
+    $i = 0;
+    foreach ($results as $innovation) {
+      foreach ($innovation as $key => $value) {
+        if (!is_int($key)) {
+          $quantite[$i] = $value;
+          $i++;
+        }
+      }
+    }
     ?>
 
     <h3>Etat des patients</h3>

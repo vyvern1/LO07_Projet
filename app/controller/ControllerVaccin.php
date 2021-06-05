@@ -18,7 +18,9 @@ class ControllerVaccin {
 
    // Affiche le formulaire de creation d'un Vaccin
    public static function vaccinCreate() {
-      $destination = 'vaccinCreated';
+      $hidden = array(
+         array("action", 'vaccinCreated')
+      );
       $option = NULL;
       $label = array (
          array("label", "text"),
@@ -46,7 +48,10 @@ class ControllerVaccin {
 
    public static function vaccinUpdate() {
       $results_vaccin = ModelVaccin::getAll();
-      $destination = 'vaccinUpdated';
+      
+      $hidden = array(
+         array("action", 'vaccinUpdated')
+      );
       $option = array(
          array("id", $results_vaccin)
       );

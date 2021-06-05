@@ -31,8 +31,10 @@ class ModelInnovation {
     $numberPatientFullInjection = $tuple['0'];
 
     $numberPatientCurrentInjection = $numberPatient - $numberPatientNoInjection - $numberPatientFullInjection;
-    $results_innovation = array('Non vacciné' => $numberPatientNoInjection,'Partiellement vacciné' => $numberPatientCurrentInjection,'Totalement vacciné' =>  $numberPatientFullInjection);
-    return $results_innovation;
+    $results_innovation = array(
+      array('Non vacciné' => $numberPatientNoInjection,'Partiellement vacciné' => $numberPatientCurrentInjection,'Totalement vacciné' =>  $numberPatientFullInjection)
+    );
+      return $results_innovation;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
    return NULL;
@@ -43,7 +45,7 @@ class ModelInnovation {
   try {
     $database = Model::getInstance();
 
-    $query = "SELECT label, COUNT(DISTINCT patient_id) FROM vaccin,rendezvous WHERE rendezvous.vaccin_id = vaccin.id";
+    $query = "SELECT label, COUNT(DISTINCT patient_id) as nombre FROM vaccin,rendezvous WHERE rendezvous.vaccin_id = vaccin.id";
     $statement = $database->query($query);
     $results_innovation = $statement->fetchall();
 

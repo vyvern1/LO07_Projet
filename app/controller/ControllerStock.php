@@ -32,7 +32,9 @@ class ControllerStock {
       $results_vaccin = ModelVaccin::getAll();
       $results_centre = ModelCentre::getAll();
 
-      $destination = 'stockUpdated';
+      $hidden = array(
+         array("action", 'stockUpdated')
+      );
       $option = array(
          array("centre_id", $results_centre),
          array("vaccin_id", $results_vaccin)

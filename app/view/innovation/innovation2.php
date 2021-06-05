@@ -13,7 +13,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
 
     $i = 0;
     
-    foreach ($results_innovation as $innovation) {
+    foreach ($results as $innovation) {
       $label[$i] = $innovation[0];
       $quantite[$i] = $innovation[1];
       $i = $i + 1;
@@ -22,7 +22,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
 
     //Aide débeugage
     echo("<pre>");
-    print_r($results_innovation);
+    print_r($results);
     echo("</pre>");
 
     ?>

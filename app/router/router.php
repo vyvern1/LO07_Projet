@@ -6,6 +6,7 @@ require ('../controller/ControllerCentre.php');
 require ('../controller/ControllerPatient.php');
 require ('../controller/ControllerStock.php');
 require ('../controller/ControllerInnovation.php');
+require ('../controller/ControllerRendezvous.php');
 require ('../controller/ControllerAccueil.php');
 
 
@@ -55,6 +56,13 @@ switch ($action) {
   case "stockUpdate" :
   case "stockUpdated" :
     ControllerStock::$action($args);
+    break;
+
+  case "readAllpatient":
+  case "dossieruptdated":
+  case "vaccinated0":
+  case "vaccinated1":
+    ControllerRendezvous::$action($args);
     break;
 
   case "innovation1" :

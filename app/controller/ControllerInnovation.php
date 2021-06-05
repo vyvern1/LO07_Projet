@@ -6,7 +6,7 @@ class ControllerInnovation {
  
    // --- innovation1
    public static function innovation1() {
-      $results_innovation = ModelInnovation::innovation_1();
+      $results = ModelInnovation::innovation_1();
       // ----- Construction chemin de la vue
       include 'config.php';
       $vue = $root . '/app/view/innovation/innovation.php';
@@ -18,7 +18,7 @@ class ControllerInnovation {
    
    // --- innovation2
    public static function innovation2() {
-      $results_innovation = ModelInnovation::innovation_2();
+      $results = ModelInnovation::innovation_2();
       //$results_innovation = ;
       // ----- Construction chemin de la vue
       include 'config.php';

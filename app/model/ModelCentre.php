@@ -82,6 +82,43 @@ class ModelCentre {
   }
  }
 
+ // Liste des centres avec au moins une dose
+ public static function getover1(){
+  try {
+    $database = Model::getInstance();
+    $query = "select id, label, adresse from centre,stock where stock.centre_id = centre.id and quantite > 0 group by centre_id";
+    $statement = $database->prepare($query);
+    $statement->execute();
+    $results = $statement->fetchAll();
+    return $results;
+
+  }catch (PDOException $e) {
+    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+    return null;
+  }
+}
+
+
+// Liste des centres avec au moins une dose
+public static function getCentrewithVaccin($vaccin){
+  try {
+    echo ("$vaccin");
+    $database = Model::getInstance();
+    $query = "select label, centre.id from centre,stock where stock.centre_id = centre.id and stock.vaccin_id = :vaccin and quantite > 0";
+    $statement = $database->prepare($query);
+    $statement->execute([
+      'vaccin'=> $vaccin
+    ]);
+    $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelCentre");
+    print_r($results);
+    return $results;
+  }catch (PDOException $e) {
+    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+    return null;
+  }
+ }
+
+
 
 }
 ?>

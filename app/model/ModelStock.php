@@ -87,30 +87,57 @@ class ModelStock {
       $quantite_initiale = $tuple['0'];
       $quantite += $quantite_initiale;
 
-      $query = "update stock set quantite=:quantite where centre_id=:centre_id and vaccin_id=:vaccin_id";
-      $statement = $database->prepare($query);
-      $statement->execute([
+      if ($quantite >= 0) {
+        $query = "update stock set quantite=:quantite where centre_id=:centre_id and vaccin_id=:vaccin_id";
+        $statement = $database->prepare($query);
+        $statement->execute([
+            'quantite' => $quantite,
+            'centre_id' => $centre_id,
+            'vaccin_id' => $vaccin_id
+        ]);
+        return 2;
+      }
+      else {
+        return null;
+      }
+    }
+    else {
+      if ($quantite >= 0) {
+        $query = "insert into stock value (:centre_id, :vaccin_id, :quantite)";
+        $statement = $database->prepare($query);
+        $statement->execute([
           'quantite' => $quantite,
           'centre_id' => $centre_id,
           'vaccin_id' => $vaccin_id
-      ]);
-      return 2;
-    }
-    else {
-      $query = "insert into stock value (:centre_id, :vaccin_id, :quantite)";
-      $statement = $database->prepare($query);
-      $statement->execute([
-        'quantite' => $quantite,
-        'centre_id' => $centre_id,
-        'vaccin_id' => $vaccin_id
-      ]);
-      return 1;
+        ]);
+        return 1;
+      }
+      else {
+        return null;
+      }
     }
   } catch (PDOException $e) {
     printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
     return null;
    }
   }
+
+  public static function getmaxdose($centre_id) {
+    try {
+        $database = Model::getInstance();
+        $query = "select vaccin_id from stock where centre_id = :centre_id ORDER BY quantite DESC";
+        $statement = $database->prepare($query);
+        $statement->execute([
+          'centre_id' => $centre_id
+        ]);
+        $results_vaccin = $statement->fetchAll();
+        return $results_vaccin;
+    } catch (PDOException $e) {
+        printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+        return NULL;
+    }
+}
+
 
 
 }

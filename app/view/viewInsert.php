@@ -14,8 +14,12 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
 
     <form role="form" method='get' action='router.php'>
       <div class="form-group">
-        <input type="hidden" name='action' value='<?php echo($destination) ?>'>
         <?php
+          if ($hidden) {
+            foreach($hidden as $value) {
+              echo("<input type='hidden' name='".$value[0]."' value='" .$value[1]."'>");
+            }
+          }
           if ($option) {
             foreach($option as $value) {
               echo("<label for='".$value[0]."'>".$value[0]." : </label><select class='form-control' id='".$value[0]."' name='".$value[0]."' style='width: 400px'>");

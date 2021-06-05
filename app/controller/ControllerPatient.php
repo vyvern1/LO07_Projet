@@ -18,7 +18,9 @@ class ControllerPatient {
 
    // Affiche le formulaire de creation d'un patient
    public static function patientCreate() {
-      $destination = 'patientCreated';
+      $hidden = array(
+         array("action", 'patientCreated')
+      );
       $option = NULL;
       $label = array (
          array("nom", "text"),

@@ -18,8 +18,10 @@ class ControllerCentre {
 
    // Affiche le formulaire de creation d'un Centre
    public static function centreCreate() {
-      $destination = 'centreCreated';
       $option = NULL;
+      $hidden = array(
+         array("action", 'centreCreated')
+      );
       $label = array (
          array("label", "text"),
          array("adresse", "text")
