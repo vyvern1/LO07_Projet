@@ -9,20 +9,20 @@ class ControllerStock {
  
    // --- Liste des stocks
    public static function stockReadAll() {
-      $results_stock = ModelStock::getAll();
+      $results = ModelStock::getAll();
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/stock/viewAll.php';
+      $vue = $root . '/app/view/viewAll.php';
       if (DEBUG)
        echo ("ControllerStock : stockReadAll : vue = $vue");
       require ($vue);
    }
 
    public static function stocktReadDoses() {
-      $results_stock = ModelStock::getAllDoses();
+      $results = ModelStock::getAllDoses();
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/stock/viewAllDoses.php';
+      $vue = $root . '/app/view/viewAll.php';
       if (DEBUG)
        echo ("ControllerStock : stockReadAll : vue = $vue");
       require ($vue);
@@ -32,18 +32,27 @@ class ControllerStock {
       $results_vaccin = ModelVaccin::getAll();
       $results_centre = ModelCentre::getAll();
 
+      $destination = 'stockUpdated';
+      $option = array(
+         array("centre_id", $results_centre),
+         array("vaccin_id", $results_vaccin)
+      );
+      $label = array (
+         array("quantite", "number")
+      );
+
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/stock/viewUpdate.php';
+      $vue = $root . '/app/view/viewInsert.php';
       require ($vue);
    }
 
    public static function stockUpdated() {
-      $results_stock = ModelStock::update(htmlspecialchars($_GET['centre_id']), htmlspecialchars($_GET['vaccin_id']), htmlspecialchars($_GET['quantite']));
-   
+      $results = ModelStock::update(htmlspecialchars($_GET['centre_id']), htmlspecialchars($_GET['vaccin_id']), htmlspecialchars($_GET['quantite']));
+      $objet = "stock";
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/stock/viewUpdated.php';
+      $vue = $root . '/app/view/viewInserted.php';
       require ($vue);
    }
  

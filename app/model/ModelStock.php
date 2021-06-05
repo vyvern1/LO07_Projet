@@ -45,7 +45,7 @@ class ModelStock {
  public static function getAll() {
   try {
    $database = Model::getInstance();
-   $query = "select centre.label, vaccin.label, quantite from centre, vaccin, stock where stock.centre_id = centre.id and stock.vaccin_id = vaccin.id";
+   $query = "select centre.label as centre, vaccin.label as vaccin, quantite from centre, vaccin, stock where stock.centre_id = centre.id and stock.vaccin_id = vaccin.id";
    $statement = $database->prepare($query);
    $statement->execute();
    $results_stock = $statement->fetchAll();
@@ -89,22 +89,23 @@ class ModelStock {
 
       $query = "update stock set quantite=:quantite where centre_id=:centre_id and vaccin_id=:vaccin_id";
       $statement = $database->prepare($query);
-      $results_stock = $statement->execute([
+      $statement->execute([
           'quantite' => $quantite,
           'centre_id' => $centre_id,
           'vaccin_id' => $vaccin_id
       ]);
+      return 2;
     }
     else {
       $query = "insert into stock value (:centre_id, :vaccin_id, :quantite)";
       $statement = $database->prepare($query);
-      $results_stock = $statement->execute([
+      $statement->execute([
         'quantite' => $quantite,
         'centre_id' => $centre_id,
         'vaccin_id' => $vaccin_id
       ]);
+      return 1;
     }
-    return $results_stock;
   } catch (PDOException $e) {
     printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
     return null;

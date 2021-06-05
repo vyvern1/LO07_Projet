@@ -6,10 +6,10 @@ class ControllerVaccin {
  
    // --- Liste des Vaccins
    public static function vaccinReadAll() {
-      $results_vaccin = ModelVaccin::getAll();
+      $results = ModelVaccin::getAll();
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/vaccin/viewAll.php';
+      $vue = $root . '/app/view/viewAll.php';
       if (DEBUG)
        echo ("ControllerVaccin : vaccinReadAll : vue = $vue");
       require ($vue);
@@ -18,9 +18,16 @@ class ControllerVaccin {
 
    // Affiche le formulaire de creation d'un Vaccin
    public static function vaccinCreate() {
+      $destination = 'vaccinCreated';
+      $option = NULL;
+      $label = array (
+         array("label", "text"),
+         array("doses", "number")
+      );
+
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/vaccin/viewInsert.php';
+      $vue = $root . '/app/view/viewInsert.php';
       require ($vue);
    }
 
@@ -28,27 +35,37 @@ class ControllerVaccin {
    // La clé est gérée par le systeme et pas par l'internaute
    public static function vaccinCreated() {
       // ajouter une validation des informations du formulaire
-      $results_vaccin = ModelVaccin::insert(htmlspecialchars($_GET['label']), htmlspecialchars($_GET['doses']));
+      $results = ModelVaccin::insert(htmlspecialchars($_GET['label']), htmlspecialchars($_GET['doses']));
+      $objet = "vaccin";
+
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/vaccin/viewInserted.php';
+      $vue = $root . '/app/view/viewInserted.php';
       require ($vue);
    }
 
    public static function vaccinUpdate() {
       $results_vaccin = ModelVaccin::getAll();
+      $destination = 'vaccinUpdated';
+      $option = array(
+         array("id", $results_vaccin)
+      );
+      $label = array (
+         array("doses", "number")
+      );
+
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/vaccin/viewUpdate.php';
+      $vue = $root . '/app/view/viewInsert.php';
       require ($vue);
    }
 
    public static function vaccinUpdated() {
-      $results_vaccin = ModelVaccin::update(htmlspecialchars($_GET['id']), htmlspecialchars($_GET['doses']));
-   
+      $results = ModelVaccin::update(htmlspecialchars($_GET['id']), htmlspecialchars($_GET['doses']));
+      $objet = "vaccin";
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/vaccin/viewUpdated.php';
+      $vue = $root . '/app/view/viewInserted.php';
       require ($vue);
    }
  

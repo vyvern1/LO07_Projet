@@ -12,17 +12,20 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     ?>
     <!-- ===================================================== -->
     <?php
-    if ($results_patient) {
-     echo ("<h3>Le nouveau patient a été ajouté </h3>");
+    if ($results == 1) {
+      echo ("<h3>Le nouveau $objet a été ajouté </h3>");
+    }
+    elseif ($results == 2) {
+      echo ("<h3>$objet mise a jour</h3>");
+    }
+    if ($results) {
      echo("<ul>");
-     echo ("<li>id = " . $results_patient . "</li>");
-     echo ("<li>nom = " . $_GET['nom'] . "</li>");
-     echo ("<li>prenom = " . $_GET['prenom'] . "</li>");
-     echo ("<li>adresse = " . $_GET['adresse'] . "</li>");
+     foreach($_GET as $key => $value) {
+      echo ("<li>$key = " . $value. "</li>");
+     }
      echo("</ul>");
     } else {
-     echo ("<h3>Problème d'insertion du patient</h3>");
-     echo ("nom = " . $_GET['nom']);
+     echo ("<h3>Problème d'insertion du $objet</h3>");
     }
 
     echo("</div>");

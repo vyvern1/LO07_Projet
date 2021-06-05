@@ -57,7 +57,7 @@ class ModelPatient {
    $query = "select * from patient";
    $statement = $database->prepare($query);
    $statement->execute();
-   $results_patient = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPatient");
+   $results_patient = $statement->fetchAll();
    return $results_patient;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -85,7 +85,7 @@ class ModelPatient {
      'prenom' => $prenom,
      'adresse' => $adresse,
    ]);
-   return $id;
+   return 1;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
    return null;

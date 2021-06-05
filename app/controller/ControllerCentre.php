@@ -6,10 +6,10 @@ class ControllerCentre {
  
    // --- Liste des Centres
    public static function centreReadAll() {
-      $results_centre = ModelCentre::getAll();
+      $results = ModelCentre::getAll();
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/centre/viewAll.php';
+      $vue = $root . '/app/view/viewAll.php';
       if (DEBUG)
        echo ("ControllerCentre : centreReadAll : vue = $vue");
       require ($vue);
@@ -18,9 +18,16 @@ class ControllerCentre {
 
    // Affiche le formulaire de creation d'un Centre
    public static function centreCreate() {
+      $destination = 'centreCreated';
+      $option = NULL;
+      $label = array (
+         array("label", "text"),
+         array("adresse", "text")
+      );
+
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/centre/viewInsert.php';
+      $vue = $root . '/app/view/viewInsert.php';
       require ($vue);
    }
 
@@ -28,10 +35,12 @@ class ControllerCentre {
    // La clé est gérée par le systeme et pas par l'internaute
    public static function centreCreated() {
       // ajouter une validation des informations du formulaire
-      $results_centre = ModelCentre::insert(htmlspecialchars($_GET['label']), htmlspecialchars($_GET['adresse']));
+      $results = ModelCentre::insert(htmlspecialchars($_GET['label']), htmlspecialchars($_GET['adresse']));
+      $objet = "centre";      
+      
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/centre/viewInserted.php';
+      $vue = $root . '/app/view/viewInserted.php';
       require ($vue);
    }
 

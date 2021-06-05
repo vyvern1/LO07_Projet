@@ -48,7 +48,7 @@ class ModelCentre {
    $query = "select * from centre";
    $statement = $database->prepare($query);
    $statement->execute();
-   $results_centre = $statement->fetchAll(PDO::FETCH_CLASS, "ModelCentre");
+   $results_centre = $statement->fetchAll();
    return $results_centre;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -75,7 +75,7 @@ class ModelCentre {
      'label' => $label,
      'adresse' => $adresse
    ]);
-   return $id;
+   return 1;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
    return null;

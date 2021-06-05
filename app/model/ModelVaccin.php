@@ -48,7 +48,7 @@ class ModelVaccin {
    $query = "select * from vaccin";
    $statement = $database->prepare($query);
    $statement->execute();
-   $results_vaccin = $statement->fetchAll(PDO::FETCH_CLASS, "Modelvaccin");
+   $results_vaccin = $statement->fetchAll();
    return $results_vaccin;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -75,7 +75,7 @@ class ModelVaccin {
      'label' => $label,
      'doses' => $doses
    ]);
-   return $id;
+   return 1;
   } catch (PDOException $e) {
    printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
    return null;
@@ -93,8 +93,8 @@ class ModelVaccin {
       'id' => $id,
       'doses' => $doses
     ]);
-    return $id;
-   } catch (PDOException $e) {
+    return 2;
+  } catch (PDOException $e) {
     printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
     return null;
    }

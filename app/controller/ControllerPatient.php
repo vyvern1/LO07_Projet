@@ -6,10 +6,10 @@ class ControllerPatient {
  
    // --- Liste des patients
    public static function patientReadAll() {
-      $results_patient = ModelPatient::getAll();
+      $results = ModelPatient::getAll();
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/patient/viewAll.php';
+      $vue = $root . '/app/view/viewAll.php';
       if (DEBUG)
        echo ("ControllerPatient : patientReadAll : vue = $vue");
       require ($vue);
@@ -18,9 +18,16 @@ class ControllerPatient {
 
    // Affiche le formulaire de creation d'un patient
    public static function patientCreate() {
+      $destination = 'patientCreated';
+      $option = NULL;
+      $label = array (
+         array("nom", "text"),
+         array("prenom", "text"),
+         array("adresse", "text")
+      );
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/patient/viewInsert.php';
+      $vue = $root . '/app/view/viewInsert.php';
       require ($vue);
    }
 
@@ -28,10 +35,12 @@ class ControllerPatient {
    // La clé est gérée par le systeme et pas par l'internaute
    public static function patientCreated() {
       // ajouter une validation des informations du formulaire
-      $results_patient = ModelPatient::insert(htmlspecialchars($_GET['nom']), htmlspecialchars($_GET['prenom']), htmlspecialchars($_GET['adresse']));
+      $results = ModelPatient::insert(htmlspecialchars($_GET['nom']), htmlspecialchars($_GET['prenom']), htmlspecialchars($_GET['adresse']));
+      $objet = "patient";
+
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/patient/viewInserted.php';
+      $vue = $root . '/app/view/viewInserted.php';
       require ($vue);
    }
  
