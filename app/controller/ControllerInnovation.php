@@ -7,9 +7,11 @@ class ControllerInnovation {
    // --- innovation1
    public static function innovation1() {
       $results = ModelInnovation::innovation_1();
+      $type = 'doughnut';
+      $titre = 'Etat de vaccination';
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/innovation/innovation.php';
+      $vue = $root . '/app/view/innovation.php';
       if (DEBUG)
        echo ("ControllerInnovation : innovation : vue = $vue");
       require ($vue);
@@ -19,10 +21,11 @@ class ControllerInnovation {
    // --- innovation2
    public static function innovation2() {
       $results = ModelInnovation::innovation_2();
-      //$results_innovation = ;
+      $type = 'pie';
+      $titre = 'Nombre de personne vacciné par vaccin';
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/innovation/innovation2.php';
+      $vue = $root . '/app/view/innovation.php';
       if (DEBUG)
        echo ("ControllerInnovation : innovation : vue = $vue");
       require ($vue);
@@ -30,11 +33,12 @@ class ControllerInnovation {
 
    // --- innovation3
    public static function innovation3() {
-      $results_innovation = ModelInnovation::innovation_3();
-      //$results_innovation = ;
+      $results = ModelInnovation::innovation_3();
+      $type = 'doughnut';
+      $titre = 'Nombre de vaccin en stock';
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/innovation/innovation3.php';
+      $vue = $root . '/app/view/innovation.php';
       if (DEBUG)
        echo ("ControllerInnovation : innovation : vue = $vue");
       require ($vue);

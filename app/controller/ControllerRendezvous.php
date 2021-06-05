@@ -90,7 +90,6 @@ class ControllerRendezvous {
     }
 
 
-
     // Effectue les modifications pour le premiers rendez-vous
     public static function vaccinated0(){
 
@@ -110,7 +109,6 @@ class ControllerRendezvous {
         $vue = $root . '/app/view/viewInserted.php';
         require ($vue);
     }
-
 
 
     // Effectue les modifications pour le premiers rendez-vous
@@ -137,5 +135,3 @@ class ControllerRendezvous {
 }
 ?>
 <!-- ----- fin Controllerpatient -->
-
-

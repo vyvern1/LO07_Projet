@@ -18,16 +18,9 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
       $quantite[$i] = $innovation[1];
       $i = $i + 1;
     }
-    
-
-    //Aide débeugage
-    echo("<pre>");
-    print_r($results);
-    echo("</pre>");
-
     ?>
 
-    <h3>Nombre de personne vacciné pour chaque vaccin</h3>
+    <h3><?php echo($titre) ?></h3>
     <div>
       <canvas id="Chart"></canvas>
     </div>
@@ -44,14 +37,15 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
             'rgb(255, 99, 132)',
             'rgb(54, 162, 235)',
             'rgb(255, 205, 86)',
-            'rgb(205, 86, 255)'
+            'rgb(205, 86, 255)',
+            'rgb(86, 255, 205)'
           ],
           hoverOffset: 5
         }]
       };
 
       const config = {
-        type: 'doughnut',
+        type: '<?php echo($type) ?>',
         data,
         options: {}
       };

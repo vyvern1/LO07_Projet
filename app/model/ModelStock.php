@@ -59,7 +59,7 @@ class ModelStock {
  public static function getAllDoses() {
   try {
    $database = Model::getInstance();
-   $query = "select label, sum(quantite) from centre,stock where stock.centre_id = centre.id group by centre_id";
+   $query = "select label, sum(quantite) as quantite from centre,stock where stock.centre_id = centre.id group by centre_id order by sum(quantite) desc";
    $statement = $database->prepare($query);
    $statement->execute();
    $results_stock = $statement->fetchAll();
