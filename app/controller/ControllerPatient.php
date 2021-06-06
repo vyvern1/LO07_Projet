@@ -18,6 +18,7 @@ class ControllerPatient {
 
    // Affiche le formulaire de creation d'un patient
    public static function patientCreate() {
+      $info = "<h3>Création d'un patient</h3>";
       $hidden = array(
          array("action", 'patientCreated')
       );

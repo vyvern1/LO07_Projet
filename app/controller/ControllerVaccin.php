@@ -18,6 +18,8 @@ class ControllerVaccin {
 
    // Affiche le formulaire de creation d'un Vaccin
    public static function vaccinCreate() {
+      $info = "<h3>Création d'un vaccin</h3>";
+
       $hidden = array(
          array("action", 'vaccinCreated')
       );
@@ -48,6 +50,8 @@ class ControllerVaccin {
 
    public static function vaccinUpdate() {
       $results_vaccin = ModelVaccin::getAll();
+
+      $info = "<h3>Mise à jour d'un vaccin</h3>";
       
       $hidden = array(
          array("action", 'vaccinUpdated')

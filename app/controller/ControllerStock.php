@@ -32,6 +32,9 @@ class ControllerStock {
       $results_vaccin = ModelVaccin::getAll();
       $results_centre = ModelCentre::getAll();
 
+      $info = "<h3>Mise à jour des stocks</h3>";
+
+
       $hidden = array(
          array("action", 'stockUpdated')
       );

@@ -100,7 +100,7 @@ class ModelRendezvous
             $database = Model::getInstance();
 
             // update d'un nouveau tuple;
-            $query = "select vaccin_id, injection, doses from rendezvous,vaccin where patient_id  = :patient and vaccin_id = id order by injection DESC";
+            $query = "select vaccin_id, injection, doses, label from rendezvous,vaccin where patient_id  = :patient and vaccin_id = id order by injection DESC";
             $statement = $database->prepare($query);
             $statement->execute([
                 'patient' => $patient,

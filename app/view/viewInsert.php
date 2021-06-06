@@ -10,6 +10,9 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     <?php
       include $root . '/app/view/fragment/fragmentCaveMenu.html';
       include $root . '/app/view/fragment/fragmentCaveJumbotron.html';
+      if ($info) {
+        echo($info);
+      }
     ?> 
 
     <form role="form" method='get' action='router.php'>

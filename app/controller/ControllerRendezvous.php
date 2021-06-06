@@ -10,6 +10,8 @@ class ControllerRendezvous {
     public static function readAllpatient() {
         $results_patient = ModelPatient::getAll();
 
+        $info = "<h3>Choisir un patient</h3>";
+
         $hidden = array(
             array("action", 'dossieruptdated')
         );
@@ -36,10 +38,14 @@ class ControllerRendezvous {
 
        
         if ($results){
+            // Patient en cours de vaccination
             if ($results[0][1] < $results[0][2]) {
                 $nbinjection = $results[0][1];
                 $vaccin_id = $results[0][0];
+                $vaccin = $results[0][3];
                 $results = ModelRendezvous::getOne($vaccin_id);
+
+                $info = '<h3>Patient partiellement vacciné</h3><ul><li>vaccin utilisé : ' . $vaccin .'</li><li>nombre de dose : ' . $nbinjection. '</li></ul>';
             
                 $option = array(
                    array("centre_id", $results)
@@ -58,8 +64,14 @@ class ControllerRendezvous {
                     echo ("ControllerPatient : patientReadAll : vue = $vue");
                 require ($vue);
             }
+
+            // Patient vacciné
             elseif ($results[0][1] == $results[0][2]) {
+                $vaccin = $results[0][3];
+                $nbinjection = $results[0][1];
                 $results = 3;
+
+                echo($vaccin);
 
                 include 'config.php';
                 $vue = $root . '/app/view/viewInserted.php';
@@ -72,6 +84,8 @@ class ControllerRendezvous {
         else{
             $results = ModelCentre::getover1();
 
+
+            $info = "<h3>Le patient n'a pas encore pris de rendez-vous, choisissez un centre</h3>";
             $option = array(
                array("centre_id", $results)
             );

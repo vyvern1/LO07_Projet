@@ -18,6 +18,7 @@ class ControllerCentre {
 
    // Affiche le formulaire de creation d'un Centre
    public static function centreCreate() {
+      $info = "<h3>Création d'un centre</h3>";
       $option = NULL;
       $hidden = array(
          array("action", 'centreCreated')
