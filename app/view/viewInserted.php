@@ -18,7 +18,9 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
         echo ("<h3>Le nouveau $objet a été ajouté </h3>");
         echo("<ul>");
         foreach($_GET as $key => $value) {
-          echo ("<li>$key = " . $value. "</li>");
+          if ($key != 'action') {
+            echo ("<li>$key = " . $value. "</li>");
+          }
         }
         echo("</ul>");
       }
@@ -27,7 +29,9 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
         echo ("<h3>$objet mise a jour</h3>");
         echo("<ul>");
         foreach($_GET as $key => $value) {
-          echo ("<li>$key = " . $value. "</li>");
+          if ($key != 'action') {
+            echo ("<li>$key = " . $value. "</li>");
+          }
         }
         echo("</ul>");
       }
@@ -36,7 +40,15 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
         echo ("<h3>Le patient est déja vacciné</h3>");
         echo("<ul>");
         echo ("<li>vaccin utilisé : " . $vaccin."</li>");
-        echo ("<li>nombre de dose : " . $nbinjection."</li>");
+        echo ("<li>nombre de dose reçu : " . $nbinjection."</li>");
+        echo("</ul>");
+      }
+
+      elseif ($results == 4) {
+        echo ("<h3>Le patient a était vacciné</h3>");
+        echo("<ul>");
+        echo ("<li>vaccin utilisé : " . $vaccin."</li>");
+        echo ("<li>nombre de dose reçu : 1</li>");
         echo("</ul>");
       }
       

@@ -7,6 +7,7 @@ require ('../controller/ControllerPatient.php');
 require ('../controller/ControllerStock.php');
 require ('../controller/ControllerInnovation.php');
 require ('../controller/ControllerRendezvous.php');
+require ('../controller/ControllerDocumentation.php');
 require ('../controller/ControllerAccueil.php');
 
 
@@ -69,6 +70,10 @@ switch ($action) {
   case "innovation2" :
   case "innovation3" :
     ControllerInnovation::$action($args);
+    break;
+
+  case "docInovation" :
+    ControllerDocumentation::$action($args);
     break;
 
  // Tache par défaut

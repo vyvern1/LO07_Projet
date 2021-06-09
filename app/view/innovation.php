@@ -2,7 +2,7 @@
 <!-- ----- début innovation -->
 <?php
 
-require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
+require ($root . '/app/view/fragment/fragmentCaveHeader.html');
 ?>
 
 <body>
@@ -21,7 +21,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
     ?>
 
     <h3><?php echo($titre) ?></h3>
-    <div>
+    <div style="max-height: 600px; max-width: 600px; margin: auto;">
       <canvas id="Chart"></canvas>
     </div>
 
@@ -38,7 +38,8 @@ require ($root . '/app/view/fragment/fragmentCaveHeaderInnovation1.html');
             'rgb(54, 162, 235)',
             'rgb(255, 205, 86)',
             'rgb(205, 86, 255)',
-            'rgb(86, 255, 205)'
+            'rgb(86, 255, 205)',
+            'rgb(205, 255, 86)'
           ],
           hoverOffset: 5
         }]

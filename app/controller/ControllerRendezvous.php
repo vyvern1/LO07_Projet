@@ -112,13 +112,13 @@ class ControllerRendezvous {
 
 
         //On trouve le vaccin du centre ayant le plus de dose
-        $vaccin_id = ModelStock::getmaxdose($centre_id);
+        $vaccin = ModelStock::getmaxdose($centre_id);
 
-        ModelStock::update($centre_id, $vaccin_id[0][0], -1);
-        $results = ModelRendezvous::insert($centre_id, $patient_id, 1, $vaccin_id[0][0]);
+        ModelStock::update($centre_id, $vaccin[0][0], -1);
+        $result = ModelRendezvous::insert($centre_id, $patient_id, 1, $vaccin[0][0]);
 
-        $objet = "rendez-vous";
-
+        $results = 4;
+        $vaccin = $vaccin[0][1];
         include 'config.php';
         $vue = $root . '/app/view/viewInserted.php';
         require ($vue);

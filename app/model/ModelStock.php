@@ -125,7 +125,7 @@ class ModelStock {
   public static function getmaxdose($centre_id) {
     try {
         $database = Model::getInstance();
-        $query = "select vaccin_id from stock where centre_id = :centre_id ORDER BY quantite DESC";
+        $query = "select vaccin_id, label from stock,vaccin where vaccin_id = vaccin.id and centre_id = :centre_id ORDER BY quantite DESC";
         $statement = $database->prepare($query);
         $statement->execute([
           'centre_id' => $centre_id
