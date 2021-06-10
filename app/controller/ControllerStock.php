@@ -34,8 +34,6 @@ class ControllerStock {
 
       $info = "<h3>Mise à jour des stocks</h3>";
 
-      $taille = sizeof($results_vaccin);
-
       $hidden = array(
          array("action", 'stockUpdated')
       );
@@ -43,25 +41,23 @@ class ControllerStock {
          array("centre_id", $results_centre)
       );
 
-      for ($i=1; $i <= $taille; $i++) { 
+      for ($i=1; $i <= sizeof($results_vaccin); $i++) { 
          $label[$i-1][0] = $results_vaccin[$i-1][1];
          $label[$i-1][1] = 'number';
-         $label[$i-1][2] = 'vaccin_id';
-         $label[$i-1][3] = $results_vaccin[$i-1][0];
       }
 
       // ----- Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/viewInsertPlus.php';
+      $vue = $root . '/app/view/viewInsert.php';
       require ($vue);
    }
 
    public static function stockUpdated() {
       $results_vaccin = ModelVaccin::getAll();
-      $taille = sizeof($results_vaccin);
-      for ($i=1; $i <= $taille ; $i++) { 
-         $results = ModelStock::update(htmlspecialchars($_GET['centre_id']), $i , htmlspecialchars($_GET[$i]));
+      for ($i=1; $i <= sizeof($results_vaccin) ; $i++) {
+         ModelStock::update(htmlspecialchars($_GET['centre_id']), $results_vaccin[$i-1][0] , htmlspecialchars($_GET[$results_vaccin[$i-1][1]]));
       }
+      $results = 2;
       $objet = "stock";
       // ----- Construction chemin de la vue
       include 'config.php';

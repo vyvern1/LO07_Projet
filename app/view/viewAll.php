@@ -11,21 +11,25 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     include $root . '/app/view/fragment/fragmentCaveMenu.html';
     include $root . '/app/view/fragment/fragmentCaveJumbotron.html';
     ?>
-    
+
+
     <table class = "table table-striped table-bordered">
       <thead>
         <tr>
-          <?php 
+          <?php
+          if (is_array($results)) {
             foreach ($results[0] as $key => $value) {
               if (!is_int($key)) {
                 echo('<th scope = "col">' . $key . '</th>');
               }
             }
+          }
           ?>
         </tr>
       </thead>
       <tbody>
           <?php
+          if (is_array($results)) {
             foreach ($results as $Recolte) {
               echo "<tr>";
               foreach ($Recolte as $key => $value) {
@@ -35,6 +39,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
               }
               echo "</tr>";
             }
+          }
           ?>
       </tbody>
     </table>
