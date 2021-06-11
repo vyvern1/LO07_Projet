@@ -53,12 +53,24 @@ class ControllerStock {
    }
 
    public static function stockUpdated() {
+      $centre = ModelCentre::getLabelCentre($_GET['centre_id']);
+      $results[0][0] = 'centre';
+      $results[0][1] = $centre[0][0];
+
       $results_vaccin = ModelVaccin::getAll();
       for ($i=1; $i <= sizeof($results_vaccin) ; $i++) {
          ModelStock::update(htmlspecialchars($_GET['centre_id']), $results_vaccin[$i-1][0] , htmlspecialchars($_GET[$results_vaccin[$i-1][1]]));
+         $results[$i][0] = $results_vaccin[$i-1][1];
+         if ($_GET[$results_vaccin[$i-1][1]] != null) {
+            $results[$i][1] = $_GET[$results_vaccin[$i-1][1]];
+         }
+         else {
+            $results[$i][1] = 0;
+         }
       }
-      $results = 2;
-      $objet = "stock";
+      
+      $info = "<h3>Mise à jour des stock</h3>";
+
       // ----- Construction chemin de la vue
       include 'config.php';
       $vue = $root . '/app/view/viewInserted.php';

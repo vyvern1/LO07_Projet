@@ -66,12 +66,14 @@ class ControllerRendezvous {
             }
 
             // Patient vacciné
-            elseif ($results[0][1] == $results[0][2]) {
-                $vaccin = $results[0][3];
-                $nbinjection = $results[0][1];
-                $results = 3;
+            elseif ($results[0][1] >= $results[0][2]) {
 
-                echo($vaccin);
+                $info = "<h3>Patient déja vacciné</h3>";
+
+                $results = array (
+                   array("vaccin", $results[0][3]),
+                   array("Dose reçu", $results[0][1])
+                );
 
                 include 'config.php';
                 $vue = $root . '/app/view/viewInserted.php';
@@ -107,39 +109,52 @@ class ControllerRendezvous {
     // Effectue les modifications pour le premiers rendez-vous
     public static function vaccinated0(){
 
-        $patient_id = $_GET["patient_id"];
-        $centre_id = $_GET["centre_id"];
-
-
         //On trouve le vaccin du centre ayant le plus de dose
-        $vaccin = ModelStock::getmaxdose($centre_id);
+        $vaccin = ModelStock::getmaxdose($_GET["centre_id"]);
 
-        ModelStock::update($centre_id, $vaccin[0][0], -1);
-        $result = ModelRendezvous::insert($centre_id, $patient_id, 1, $vaccin[0][0]);
+        ModelStock::update($_GET["centre_id"], $vaccin[0][0], -1);
+        ModelRendezvous::insert($_GET["centre_id"], $_GET["patient_id"], 1, $vaccin[0][0]);
 
-        $results = 4;
-        $vaccin = $vaccin[0][1];
+        $patient = ModelPatient::getNomPremon($_GET["patient_id"]);
+        $centre = ModelCentre::getLabelCentre($_GET["centre_id"]);
+
+        $info = "<h3>Le patient a reçu une dose</h3>";
+
+        $results = array (
+           array("patient", $patient[0][0] . " " . $patient[0][1]),
+           array("centre", $centre[0][0]),
+           array("vaccin", $vaccin[0][1]),
+           array("Dose reçu", 1)
+        );
+
         include 'config.php';
         $vue = $root . '/app/view/viewInserted.php';
         require ($vue);
     }
 
 
-    // Effectue les modifications pour le premiers rendez-vous
     public static function vaccinated1(){
 
-        $patient_id = $_GET["patient_id"];
-        $centre_id = $_GET["centre_id"];
-        $vaccin = $_GET["vaccin_id"];
         $injection = $_GET["injection"];
-
         $injection++;
 
         // On vaccine le patient avec le vaccin correspondant a celui de la première dose
-        ModelStock::update($centre_id, $vaccin, -1);
-        $results = ModelRendezvous::insert($centre_id, $patient_id, $injection, $vaccin);
+        ModelStock::update($_GET["centre_id"], $_GET["vaccin_id"], -1);
+        $results = ModelRendezvous::insert($_GET["centre_id"], $_GET["patient_id"], $injection, $_GET["vaccin_id"]);
 
-        $objet = "rendez-vous";
+        $patient = ModelPatient::getNomPremon($_GET["patient_id"]);
+        $centre = ModelCentre::getLabelCentre($_GET["centre_id"]);
+        $vaccin = ModelVaccin::getLabelVaccin($_GET["vaccin_id"]);
+
+
+        $info = "<h3>Le patient a reçu une dose</h3>";
+
+        $results = array (
+           array("patient", $patient[0][0] . " " . $patient[0][1]),
+           array("centre", $centre[0][0]),
+           array("vaccin", $vaccin[0][0]),
+           array("Dose reçu", $injection)
+        );
 
         include 'config.php';
         $vue = $root . '/app/view/viewInserted.php';

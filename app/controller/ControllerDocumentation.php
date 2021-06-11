@@ -19,6 +19,9 @@ class ControllerDocumentation {
             $valeur = "<h3>Proposition 3 :</h3><br><p>Notre troisième innovation permet de savoir combien de patient ont été vacciné par type de vaccin. Elle est originale car elle permet d’avoir un aperçu de la situation vaccinale dans le pays et de comparer l’utilisation qui est faite des vaccins avec leur stock. De ce fait, en comparant les proportions des vaccins stockés dans l’innovation 2 et celle des vaccins utilisés dans l’innovation 3, on peut savoir si un vaccin est « boudé » par la population et adapté ainsi les commandes.
             </p>";
         }
+        else {
+            $valeur = 'Erreur';
+        }
     }
     elseif (is_string($target)) {
         if ($target == 'pdv') {
@@ -26,6 +29,14 @@ class ControllerDocumentation {
             Ce projet a donc été très instructif pour nous !
             Si nous devions apporter un regard constructif sur ce projet, il nous paraitrait intéressant de pouvoir supprimer des vaccins, des patients ou des centres. En effet, lorsque nous créons différents vaccins ou patient pour les tests, nous sommes obligé de nous rendre sur PHPmyadmin pour enlever le tuple concerné, ce qui n’est pas très pratique.
             </p>";
+        }
+        elseif ($target == 'pdvTechnique') {
+            $valeur = "<h3>Information technique</h3><br><p>Nous avons essayer de bien séparé chaque partie (patient,centre,vaccins,...) avec un controleur et un model pour suivre le modèle MVC. <br>Concernant les view nous nous somme rendue compte de nous pouvions drastiquement les réduire en réalisant :</p>
+            <ul><li>Une view pour afficher un tableau : viewAll</li><li>Une view pour afficher un formulaire : viewInsert</li><li>Une view pour afficher le résultat d'un formulaire : viewInserted</li><li>Un view généraliste pour afficher la page d'acceuil et la doccumentation : viewAcceuil_doc</li><li>Un view qui contient les innovations : innovation</li></ul>
+            <p>Concernant la parie innovation, nous avons utilisé la bibliotèque javascript Chart.js pour réaliser les graphiques";
+        }
+        else {
+            $valeur = 'Erreur';
         }
     }
     else {

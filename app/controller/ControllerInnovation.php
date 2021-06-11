@@ -5,45 +5,31 @@ require_once '../model/ModelInnovation.php';
 class ControllerInnovation {
  
    // --- innovation1
-   public static function innovation1() {
-      $results = ModelInnovation::innovation_1();
-      $type = 'doughnut';
-      $titre = 'Etat de vaccination';
-      // ----- Construction chemin de la vue
-      include 'config.php';
-      $vue = $root . '/app/view/innovation.php';
-      if (DEBUG)
-       echo ("ControllerInnovation : innovation : vue = $vue");
-      require ($vue);
-   }
+   public static function innovation($args) {
+      $target = $args['target'];
+      $results = ModelInnovation::innovation($target);
+      if ($target == 1) {
+         $type = 'doughnut';
+         $titre = 'Etat de vaccination';
+      }
+      elseif ($target == 2) {
+         $type = 'pie';
+         $titre = 'Nombre de personne vacciné ou partiellement vacciné par vaccin';
+      }
+      elseif ($target == 3) {
+         $type = 'bar';
+         $titre = 'Nombre de vaccin en stock';
+      }
+      else {
+         $titre = 'Erreur';
+      }
 
-   
-   // --- innovation2
-   public static function innovation2() {
-      $results = ModelInnovation::innovation_2();
-      $type = 'pie';
-      $titre = 'Nombre de personne vacciné par vaccin';
-      // ----- Construction chemin de la vue
       include 'config.php';
       $vue = $root . '/app/view/innovation.php';
       if (DEBUG)
-       echo ("ControllerInnovation : innovation : vue = $vue");
+      echo ("ControllerInnovation : innovation : vue = $vue");
       require ($vue);
    }
-
-   // --- innovation3
-   public static function innovation3() {
-      $results = ModelInnovation::innovation_3();
-      $type = 'doughnut';
-      $titre = 'Nombre de vaccin en stock';
-      // ----- Construction chemin de la vue
-      include 'config.php';
-      $vue = $root . '/app/view/innovation.php';
-      if (DEBUG)
-       echo ("ControllerInnovation : innovation : vue = $vue");
-      require ($vue);
-   }
- 
 }
 ?>
 <!-- ----- fin ControllerInnovation -->

@@ -66,9 +66,7 @@ switch ($action) {
     ControllerRendezvous::$action($args);
     break;
 
-  case "innovation1" :
-  case "innovation2" :
-  case "innovation3" :
+  case "innovation" :
     ControllerInnovation::$action($args);
     break;
 

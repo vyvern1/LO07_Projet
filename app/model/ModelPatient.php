@@ -65,6 +65,22 @@ class ModelPatient {
   }
  }
 
+ public static function getNomPremon($patient_id) {
+  try {
+   $database = Model::getInstance();
+   $query = "select prenom, nom from patient where id = :patient_id";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'patient_id' => $patient_id
+   ]);
+   $results_patient = $statement->fetchAll();
+   return $results_patient;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+
  public static function insert($nom, $prenom, $adresse) {
   try {
    $database = Model::getInstance();

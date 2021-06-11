@@ -21,7 +21,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     ?>
 
     <h3><?php echo($titre) ?></h3>
-    <div style="max-height: 600px; max-width: 600px; margin: auto;">
+    <div style="max-height: 720px; max-width: 720px; margin: auto;">
       <canvas id="Chart"></canvas>
     </div>
 
@@ -31,7 +31,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
       const data = {
         labels: labels,
         datasets: [{
-          label: 'Vaccin par centre',
+          label: '<?php echo($titre) ?>',
           data: <?php echo '["' . implode('", "', $quantite) . '"]' ?>,
           backgroundColor: [
             'rgb(255, 99, 132)',

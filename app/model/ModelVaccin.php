@@ -56,6 +56,22 @@ class ModelVaccin {
   }
  }
 
+ public static function getLabelVaccin($vaccin_id) {
+  try {
+   $database = Model::getInstance();
+   $query = "select label from vaccin where id = :vaccin_id";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'vaccin_id' => $vaccin_id
+   ]);
+   $results_vaccin = $statement->fetchAll();
+   return $results_vaccin;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+
  public static function insert($label, $doses) {
   try {
    $database = Model::getInstance();

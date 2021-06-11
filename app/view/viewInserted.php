@@ -9,54 +9,25 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     <?php
     include $root . '/app/view/fragment/fragmentCaveMenu.html';
     include $root . '/app/view/fragment/fragmentCaveJumbotron.html';
+    echo("<pre>");
+    print_r($results);
+    echo("</pre>");
     ?>
     <!-- ===================================================== -->
     <?php
     if ($results) {
 
-      if ($results == 1) {
-        echo ("<h3>Le nouveau $objet a été ajouté </h3>");
-        echo("<ul>");
-        foreach($_GET as $key => $value) {
-          if ($key != 'action') {
-            echo ("<li>$key = " . $value. "</li>");
-          }
-        }
-        echo("</ul>");
-      }
+      echo($info);
 
-      elseif ($results == 2) {
-        echo ("<h3>$objet mise a jour</h3>");
-        echo("<ul>");
-        foreach($_GET as $key => $value) {
-          if ($key != 'action') {
-            echo ("<li>$key = " . $value. "</li>");
-          }
-        }
-        echo("</ul>");
+      echo("<ul>");
+      foreach($results as $value) {
+        echo ("<li>" . $value[0] . " = " . $value[1]. "</li>");
       }
-
-      elseif ($results == 3) {
-        echo ("<h3>Le patient est déja vacciné</h3>");
-        echo("<ul>");
-        echo ("<li>vaccin utilisé : " . $vaccin."</li>");
-        echo ("<li>nombre de dose reçu : " . $nbinjection."</li>");
-        echo("</ul>");
-      }
-
-      elseif ($results == 4) {
-        echo ("<h3>Le patient a était vacciné</h3>");
-        echo("<ul>");
-        echo ("<li>vaccin utilisé : " . $vaccin."</li>");
-        echo ("<li>nombre de dose reçu : 1</li>");
-        echo("</ul>");
-      }
-      
-    } 
-    else {
-      echo ("<h3>Problème d'insertion du $objet</h3>");
+      echo("</ul>");
     }
-    
+    else{
+      echo("<h3>Problème d'insertion</h3>");
+    }
 
     echo("</div>");
     

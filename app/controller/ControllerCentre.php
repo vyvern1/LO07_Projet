@@ -38,8 +38,14 @@ class ControllerCentre {
    // La clé est gérée par le systeme et pas par l'internaute
    public static function centreCreated() {
       // ajouter une validation des informations du formulaire
-      $results = ModelCentre::insert(htmlspecialchars($_GET['label']), htmlspecialchars($_GET['adresse']));
-      $objet = "centre";      
+      ModelCentre::insert(htmlspecialchars($_GET['label']), htmlspecialchars($_GET['adresse']));
+
+      $info = "<h3>Création d'un centre</h3>";
+
+      $results = array (
+         array("centre", $_GET['label']),
+         array("adresse", $_GET['adresse'])
+      );
       
       // ----- Construction chemin de la vue
       include 'config.php';

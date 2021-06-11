@@ -56,6 +56,23 @@ class ModelCentre {
   }
  }
 
+ 
+ public static function getLabelCentre($centre_id) {
+  try {
+   $database = Model::getInstance();
+   $query = "select label from centre where id = :centre_id";
+   $statement = $database->prepare($query);
+   $statement->execute([
+     'centre_id' => $centre_id
+   ]);
+   $results_centre = $statement->fetchAll();
+   return $results_centre;
+  } catch (PDOException $e) {
+   printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+   return NULL;
+  }
+ }
+
  public static function insert($label, $adresse) {
   try {
    $database = Model::getInstance();

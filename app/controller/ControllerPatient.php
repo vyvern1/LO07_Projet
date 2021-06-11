@@ -38,9 +38,16 @@ class ControllerPatient {
    // La clé est gérée par le systeme et pas par l'internaute
    public static function patientCreated() {
       // ajouter une validation des informations du formulaire
-      $results = ModelPatient::insert(htmlspecialchars($_GET['nom']), htmlspecialchars($_GET['prenom']), htmlspecialchars($_GET['adresse']));
-      $objet = "patient";
+      ModelPatient::insert(htmlspecialchars($_GET['nom']), htmlspecialchars($_GET['prenom']), htmlspecialchars($_GET['adresse']));
+      
+      $info = "<h3>Création d'un patient</h3>";
 
+      $results = array (
+         array("nom", $_GET['nom']),
+         array("prenom", $_GET['prenom']),
+         array("adresse", $_GET['adresse'])
+
+      );
       // ----- Construction chemin de la vue
       include 'config.php';
       $vue = $root . '/app/view/viewInserted.php';
