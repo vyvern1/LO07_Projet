@@ -21,7 +21,7 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     ?>
 
     <h3><?php echo($titre) ?></h3>
-    <div style="max-height: 720px; max-width: 720px; margin: auto;">
+    <div style="max-height: 550px; max-width: 550px; margin: auto;">
       <canvas id="Chart"></canvas>
     </div>
 

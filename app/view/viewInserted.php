@@ -9,9 +9,6 @@ require ($root . '/app/view/fragment/fragmentCaveHeader.html');
     <?php
     include $root . '/app/view/fragment/fragmentCaveMenu.html';
     include $root . '/app/view/fragment/fragmentCaveJumbotron.html';
-    echo("<pre>");
-    print_r($results);
-    echo("</pre>");
     ?>
     <!-- ===================================================== -->
     <?php
